@@ -35,7 +35,7 @@ public class MainActivityTest {
     public void hastextOnScreen(){
         onView(withId(R.id.helloText)).check(matches(withText(R.string.hello_world)));
     }
-/*
+
     @Test
     public void checkName(){
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
@@ -128,5 +128,5 @@ public class MainActivityTest {
         onView(withText("3/5/2000")).check(doesNotExist());
     }
 
-*/
+
 }
