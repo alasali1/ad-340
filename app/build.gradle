@@ -3,6 +3,8 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+apply from: '../jacoco.gradle'
+
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
@@ -22,6 +24,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug { testCoverageEnabled true }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
