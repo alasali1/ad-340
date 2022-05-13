@@ -11,6 +11,7 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
@@ -79,8 +80,9 @@ public class MainActivityTest {
 
         onView(withId(R.id.dateButton)).perform(click());
 
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
-                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+        onView(isRoot()).perform(HelpersViewMatcher.waitView(withClassName(Matchers.equalTo(DatePicker.class.getName())), 5000));
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2000, 2 + 1, 5));
 
         onView(withId(android.R.id.button1)).perform(click());
 
