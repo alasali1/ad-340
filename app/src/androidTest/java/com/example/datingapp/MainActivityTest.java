@@ -145,7 +145,7 @@ public class MainActivityTest {
         onView(withId(R.id.submitButton)).perform(click());
 
     }*/
-
+    @Test
     public void properCredentials(){
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
