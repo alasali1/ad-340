@@ -9,6 +9,7 @@ import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -51,7 +52,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.submitButton)).perform(click());
 
-        onView(withText("Alas Ali")).check(doesNotExist());
+        onView(withId(R.id.name)).check(matches(withText("")));
     }
 
     @Test
@@ -128,5 +129,37 @@ public class MainActivityTest {
         onView(withText("3/5/2000")).check(doesNotExist());
     }
 
+   /* @Test
+    public void canGoBack(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
 
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+    }*/
+
+    public void properCredentials(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        onView(withId(R.id.welcome)).check(matches(isDisplayed()));
+    }
 }
