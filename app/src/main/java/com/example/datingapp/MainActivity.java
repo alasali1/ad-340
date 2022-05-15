@@ -28,10 +28,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button submit;
     int mYear, mMonth, mDay;
     TextView dateText;
-    TextView helloText;
     EditText name;
     EditText email;
     EditText userName;
+    EditText description;
+    EditText occupation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         datePicker = findViewById(R.id.dateButton);
         datePicker.setOnClickListener(this);
         dateText = findViewById(R.id.dateText);
-        helloText = findViewById(R.id.helloText);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         userName = findViewById(R.id.user_name);
         submit = findViewById(R.id.submitButton);
+        description = findViewById(R.id.description);
+        occupation = findViewById(R.id.occupation);
+
         submit.setOnClickListener(this);
         //Set date to todays date automatically
         Calendar today = Calendar.getInstance();
@@ -81,21 +84,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String stringEmail = email.getText().toString();
             String stringUserName = userName.getText().toString();
             String stringDate = dateText.getText().toString();
+            String stringDescription = description.getText().toString();
+            String stringOccupation = occupation.getText().toString();
 
             try {   //If age/name/email/username is invalid or under 18 then return
-                if ( !validateEmail() || !checkAge(convertDate(stringDate)) || !validateName() || !validateUserName()) {
+                if ( !validateEmail() || !checkAge(convertDate(stringDate)) || !validateName() || !validateUserName() || !validateDescription() || !validateOccupation()) {
                     validateEmail();
                     validateName();
                     validateUserName();
+                    validateDescription();
+                    validateOccupation();
                     checkAge(convertDate(stringDate));
                     return;
                     //If age/name/username/email is valid then bundle data to send to ProfileActivity
                 } else {
+                    //get users age
+                    int age = getAge(convertDate(stringDate));
                     //add data to bundle
                     bundle.putString("name", stringName);
                     bundle.putString("email", stringEmail);
                     bundle.putString("date", stringDate);
                     bundle.putString("userName", stringUserName);
+                    bundle.putString("description",stringDescription);
+                    bundle.putString("occupation",stringOccupation);
+                    bundle.putInt("age", age);
                     //Start activity
                     ProfileActivity.putExtras(bundle);
                     startActivity(ProfileActivity);
@@ -180,6 +192,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             userName.setError(null);
             return true;
         }
+    }
+
+    private boolean validateDescription(){
+        String descriptionInput = description.getText().toString().trim();
+
+        if(descriptionInput.isEmpty()){
+            description.setError("Description can't be empty");
+            return false;
+        }else{
+            description.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateOccupation(){
+        String occupationInput = occupation.getText().toString().trim();
+
+        if(occupationInput.isEmpty()){
+             occupation.setError("Description can't be empty");
+            return false;
+        }else{
+            occupation.setError(null);
+            return true;
+        }
+    }
+
+    public int getAge(Calendar dob){
+        int age =0;
+        Calendar today = Calendar.getInstance();
+
+        if(today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR) - 1;
+        }
+        else{
+            age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        }
+        return age;
     }
 
     @Override

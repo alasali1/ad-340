@@ -33,15 +33,13 @@ public class MainActivityTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Test
-    public void hastextOnScreen(){
-        onView(withId(R.id.helloText)).check(matches(withText(R.string.hello_world)));
-    }
 
     @Test
     public void checkName(){
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
 
         onView(withId(R.id.dateButton)).perform(click());
@@ -60,6 +58,8 @@ public class MainActivityTest {
     public void checkEmail(){
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
         onView(withId(R.id.dateButton)).perform(click());
 
@@ -77,6 +77,8 @@ public class MainActivityTest {
     public void checkUserName(){
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
         onView(withId(R.id.dateButton)).perform(click());
 
@@ -97,7 +99,8 @@ public class MainActivityTest {
             onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
             onView(withId(R.id.email)).perform(replaceText("test@gmail."));
             onView(withId(R.id.user_name)).perform(replaceText("alasali"));
-
+            onView(withId(R.id.description)).perform(replaceText("This is a test"));
+         onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
             onView(withId(R.id.dateButton)).perform(click());
 
@@ -117,7 +120,8 @@ public class MainActivityTest {
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
-
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
         onView(withId(R.id.dateButton)).perform(click());
 
@@ -131,11 +135,13 @@ public class MainActivityTest {
         onView(withText("3/5/2000")).check(doesNotExist());
     }
 
-   /* @Test
-    public void canGoBack(){
+    @Test
+    public void checkDescription(){
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
         onView(withId(R.id.dateButton)).perform(click());
 
@@ -146,12 +152,36 @@ public class MainActivityTest {
 
         onView(withId(R.id.submitButton)).perform(click());
 
-    }*/
+        onView(withText("This is a test")).check(doesNotExist());
+    }
+
+    @Test
+    public void checkOccupation(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        onView(withText("I work at test")).check(doesNotExist());
+    }
+
     @Test
     public void properCredentials(){
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
         onView(withId(R.id.dateButton)).perform(click());
 
@@ -163,5 +193,45 @@ public class MainActivityTest {
         onView(withId(R.id.submitButton)).perform(click());
 
         onView(withId(R.id.welcome)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void ageDisplayed(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        onView(withId(R.id.age)).check(matches(withText("age: 22")));
+    }
+
+    @Test
+    public void imageDisplayed(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        onView(withId(R.id.profile_picture)).check(matches(isDisplayed()));
     }
 }
