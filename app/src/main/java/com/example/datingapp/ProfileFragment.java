@@ -42,25 +42,18 @@ public class ProfileFragment extends Fragment {
      * @return A new instance of fragment ProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-   public static ProfileFragment newInstance(String date, String name, String email, String userName, String description, String occupation, int age) {
-       ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString("date", date);
-        args.putString("name",name);
-       args.putString("email",email);
-       args.putString("userName",userName);
-       args.putString("description",description);
-       args.putString("occupation",occupation);
-       args.putInt("age",age);
-       fragment.setArguments(args);
-       return fragment;
-
-   }
+//    public static ProfileFragment newInstance() {
+//        ProfileFragment fragment = new ProfileFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+////        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -104,5 +97,23 @@ public class ProfileFragment extends Fragment {
 
 
 
+        //Receive data from secondActivity through getArguments
+
+//        String stringDate = getArguments().getString("date");
+//        String stringName = getArguments().getString("name");
+//        String stringEmail = getArguments().getString("email");
+//        String stringUserName = getArguments().getString("userName");
+//        String stringDescription = getArguments().getString("description");
+//        String stringOccupation = getArguments().getString("occupation");
+//        int userAge = getArguments().getInt("age");
+//
+//        //set username in welcome message.
+//        welcome.setText("Welcome " + stringUserName);
+//
+//        //set username, age, description, and job into the profile fields
+//        name.append(stringUserName);
+//        age.append(String.valueOf(userAge));
+//        description.append(stringDescription);
+//        occupation.append(stringOccupation);
     }
 }
