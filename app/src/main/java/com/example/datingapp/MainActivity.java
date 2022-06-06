@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //When submit button is clicked. Validate form data and go to next activity
         if (v.getId() == R.id.submitButton) {
             //Create intent for ProfileActivity
-            Intent SecondActivity = new Intent(MainActivity.this, SecondActivity.class);
+            Intent secondActivity = new Intent(MainActivity.this, SecondActivity.class);
             //Create a new bundle
             Bundle bundle = new Bundle();
 
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     bundle.putString("occupation",stringOccupation);
                     bundle.putInt("age", age);
                     //Start activity
-                    SecondActivity.putExtras(bundle);
-                    startActivity(SecondActivity);
+                    secondActivity.putExtras(bundle);
+                    startActivity(secondActivity);
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

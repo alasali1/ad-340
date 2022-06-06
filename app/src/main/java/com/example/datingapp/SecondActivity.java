@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class SecondActivity extends AppCompatActivity {
+    static ProfileFragment profileFragment;
 private TabLayout tabLayout;
 private ViewPager2 viewPager2;
     @Override
@@ -28,8 +29,21 @@ private ViewPager2 viewPager2;
 
         viewPager2.setAdapter(createAdapter());
 
+        //tablayout mediator to join viewpager and tabs together
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                if(position == 0)
+                    tab.setText("Profile");
+                else if(position == 1)
+                    tab.setText("Matches");
+                else
+                    tab.setText("Settings");
+            }
+        }).attach();
+
         //create profilefragment
-        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment = new ProfileFragment();
 
         //get bundle from MainActivity
             Bundle bundle = getIntent().getExtras();
@@ -42,8 +56,20 @@ private ViewPager2 viewPager2;
             String stringOccupation = bundle.getString("occupation");
             int userAge = bundle.getInt("age");
 
-            //set arguments
-            profileFragment.setArguments(bundle);
+            //prepare arguments for fragment
+                Bundle arguments = new Bundle();
+                arguments.putString("date", stringDate);
+                arguments.putString("name", stringName);
+                arguments.putString("email", stringEmail);
+                arguments.putString("userName", stringUserName);
+                arguments.putString("description", stringDescription);
+                arguments.putString("occupation", stringOccupation);
+                arguments.putInt("age", userAge);
+
+                //set arguments
+            profileFragment.setArguments(arguments);
+
+
         }
     }
 
@@ -57,15 +83,19 @@ class VpAdapter extends FragmentStateAdapter {
     public VpAdapter(FragmentActivity fa){
         super(fa);
     }
-    private static int NUM_ITEMS = 1;
+    private static int NUM_ITEMS = 3;
     @Override
     public Fragment createFragment(int position){
         Fragment fragment = null;
 
         switch(position){
             case 0:
-                fragment = new ProfileFragment();
+                fragment = SecondActivity.profileFragment;
                 break;
+            case 1:
+                fragment = new MatchesFragment();
+            case 2:
+                fragment = new SettingsFragment();
         }
         return fragment;
     }

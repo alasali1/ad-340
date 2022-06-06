@@ -7,4 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="profile_tab_name">profile</string>
+    <string name="matches_tab_name">matches</string>
+    <string name="settings_tab_name">settings</string>
 </resources>
