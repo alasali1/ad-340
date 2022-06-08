@@ -5,13 +5,16 @@ import android.widget.DatePicker;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.contrib.PickerActions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.doesNotHaveFocus;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -264,7 +267,30 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.recycler_view).atPosition(0)).check(matches(hasDescendant(withText("name1"))));
     }
 
+    @Test
+    public void LikeButtonWorks(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
 
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+        onView(withText("Matches")).perform(click());
+
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
+
+        onView(withText("You liked name1")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+    }
 
 
     @Test
