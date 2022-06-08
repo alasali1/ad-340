@@ -284,4 +284,30 @@ public class MainActivityTest {
 
         onView(withId(R.id.hello_settings_fragment)).check(matches(withText("Hello Settings Fragment")));
     }
+
+    @Test
+    public void profileTabWorks(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+        onView(withText("Settings")).perform(click());
+        
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+        onView(withText("Profile")).perform(click());
+
+        onView(withId(R.id.profile_picture)).check(matches(isDisplayed()));
+    }
 }
