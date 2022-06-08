@@ -19,8 +19,8 @@ import java.util.List;
 
 
 public class MatchesGridFragment extends Fragment {
-String[] localDataSet;
-List<Matches> matchesList = new ArrayList<>();
+
+private MatchesViewModel viewModel;
 
     public MatchesGridFragment() {
         // Required empty public constructor
@@ -30,35 +30,10 @@ List<Matches> matchesList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDataSet();
+
     }
 
-//    private void initDataSet(){
-//        localDataSet = new String[10];
-//        for(int i = 0; i < 10; i++){
-//            localDataSet[i]= "Name # "+ i;
-//        }
-//    }
-    private void initDataSet(){
-        Matches m1 = new Matches("name1");
-        Matches m2 = new Matches("name2");
-        Matches m3 = new Matches("name3");
-        Matches m4 = new Matches("name4");
-        Matches m5 = new Matches("name5");
-        Matches m6 = new Matches("name6");
-        m1.setLiked(false);
-        m2.setLiked(false);
-        m3.setLiked(false);
-        m4.setLiked(false);
-        m5.setLiked(false);
-        m6.setLiked(false);
-        this.matchesList.add(m1);
-        this.matchesList.add(m2);
-        this.matchesList.add(m3);
-        this.matchesList.add(m4);
-        this.matchesList.add(m5);
-        this.matchesList.add(m6);
-    }
+
 
 
     @Override
@@ -67,14 +42,33 @@ List<Matches> matchesList = new ArrayList<>();
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_matches, container, false);
 
+        final List<Matches> matchesList = new ArrayList<>();
+        viewModel = new MatchesViewModel();
+
         //Set up recyclerView
         RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
-        MatchesCardRecyclerViewAdapter adapter = new MatchesCardRecyclerViewAdapter(matchesList);
+        MatchesCardRecyclerViewAdapter adapter = new MatchesCardRecyclerViewAdapter(matchesList, (match) -> {
+            match.setLiked(!match.isLiked());
+            viewModel.updateMatch(match);
+        });
         recyclerView.setAdapter(adapter);
         int largePadding = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
+        //padding?
+
+        viewModel.getMatches(matches -> {
+            matchesList.clear();
+            matchesList.addAll(matches);
+            adapter.notifyDataSetChanged();
+        });
         return v;
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        viewModel.clear();
     }
 }

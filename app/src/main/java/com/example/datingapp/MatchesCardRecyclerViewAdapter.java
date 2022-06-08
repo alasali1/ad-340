@@ -14,11 +14,7 @@ import java.util.function.Consumer;
 public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<MatchesCardViewHolder> {
     private List<Matches> matchesList;
     private Consumer<Matches> onClickCallback;
-    private String[] localDataSet;
 
-    MatchesCardRecyclerViewAdapter(String[] dataSet){
-        this.localDataSet = dataSet;
-    }
 
     MatchesCardRecyclerViewAdapter(List<Matches> matchesList){
         this.matchesList = matchesList;
@@ -49,7 +45,7 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
             }
             holder.likeButton.setOnClickListener((view) -> {
                 Toast.makeText(view.getContext(), "You liked " + match.getName(), Toast.LENGTH_LONG).show();
-                match.setLiked(true);
+                onClickCallback.accept(match);
             });
         }
     }
