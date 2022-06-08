@@ -11,6 +11,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -19,14 +23,21 @@ public class SecondActivity extends AppCompatActivity {
     static ProfileFragment profileFragment;
 private TabLayout tabLayout;
 private ViewPager2 viewPager2;
+private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        tabLayout = findViewById(R.id.tablayout);
-        viewPager2 = findViewById(R.id.viewpager2);
+        //toolbar
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
+        //tablayout
+        tabLayout = findViewById(R.id.tablayout);
+
+        //viewpager
+        viewPager2 = findViewById(R.id.viewpager2);
         viewPager2.setAdapter(createAdapter());
 
         //tablayout mediator to join viewpager and tabs together
@@ -68,8 +79,32 @@ private ViewPager2 viewPager2;
 
                 //set arguments
             profileFragment.setArguments(arguments);
+            }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.profile_item:
+                viewPager2.setCurrentItem(0);
+                return true;
+
+            case R.id.matches_item:
+                viewPager2.setCurrentItem(1);
+                return true;
+
+            case R.id.settings_item:
+                viewPager2.setCurrentItem(2);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -94,8 +129,10 @@ class VpAdapter extends FragmentStateAdapter {
                 break;
             case 1:
                 fragment = new MatchesFragment();
+                break;
             case 2:
                 fragment = new SettingsFragment();
+                break;
         }
         return fragment;
     }

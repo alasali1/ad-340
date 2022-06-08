@@ -2,11 +2,12 @@ package com.example.datingapp;
 
 import android.widget.DatePicker;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
-
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -236,47 +237,51 @@ public class MainActivityTest {
         onView(withId(R.id.profile_picture)).check(matches(isDisplayed()));
     }
 
-//    @Test
-//    public void matchesTabWorks(){
-//        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
-//        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
-//        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
-//        onView(withId(R.id.description)).perform(replaceText("This is a test"));
-//        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
-//
-//        onView(withId(R.id.dateButton)).perform(click());
-//
-//        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
-//                .perform(PickerActions.setDate(2000, 2 + 1, 5));
-//
-//        onView(withId(android.R.id.button1)).perform(click());
-//
-//        onView(withId(R.id.submitButton)).perform(click());
-//
-//        onView(withId(R.id.matches_tab)).perform(click());
-//
-//        onView(withId(R.id.hello_matches_fragment)).check(matches(withText("Hello Matches Fragment")));
-//    }
-//
-//    @Test
-//    public void settingsTabWorks(){
-//        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
-//        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
-//        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
-//        onView(withId(R.id.description)).perform(replaceText("This is a test"));
-//        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
-//
-//        onView(withId(R.id.dateButton)).perform(click());
-//
-//        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
-//                .perform(PickerActions.setDate(2000, 2 + 1, 5));
-//
-//        onView(withId(android.R.id.button1)).perform(click());
-//
-//        onView(withId(R.id.submitButton)).perform(click());
-//
-//        onView(withId(R.id.settings_tab)).perform(click());
-//
-//        onView(withId(R.id.hello_settings_fragment)).check(matches(withText("Hello Settings Fragment")));
-//    }
+    @Test
+    public void matchesTabWorks(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+
+        onView(withText("Matches")).perform(click());
+
+        onView(withId(R.id.hello_matches_fragment)).check(matches(withText("Hello Matches Fragment")));
+    }
+
+    @Test
+    public void settingsTabWorks(){
+        onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
+        onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
+        onView(withId(R.id.user_name)).perform(replaceText("alasali"));
+        onView(withId(R.id.description)).perform(replaceText("This is a test"));
+        onView(withId(R.id.occupation)).perform(replaceText("I work at test"));
+
+        onView(withId(R.id.dateButton)).perform(click());
+
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
+                .perform(PickerActions.setDate(2000, 2 + 1, 5));
+
+        onView(withId(android.R.id.button1)).perform(click());
+
+        onView(withId(R.id.submitButton)).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
+
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.hello_settings_fragment)).check(matches(withText("Hello Settings Fragment")));
+    }
 }

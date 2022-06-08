@@ -3,14 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/drawable/filter.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/drawable/menu.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/drawable/search.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout-land/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/activity_main.xml" value="0.16869300911854104" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/activity_profile.xml" value="0.34270833333333334" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/activity_second.xml" value="0.3079710144927536" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/app_bar.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/fragment_matches.xml" value="0.346875" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/fragment_profile.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/fragment_second.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/fragment_settings.xml" value="0.346875" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/match_card.xml" value="0.346875" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/layout/toolbar.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/menu/drawer_view.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/menu/shr_toolbar_menu.xml" value="0.346875" />
+        <entry key="..\:/Users/cidri/datingapp/ad-340/app/src/main/res/menu/toolbar_menu.xml" value="0.20208333333333334" />
       </map>
     </option>
   </component>
