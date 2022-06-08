@@ -264,7 +264,9 @@ public class MainActivityTest {
         openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
         onView(withText("Matches")).perform(click());
 
-        onView(withRecyclerView(R.id.recycler_view).atPosition(0)).check(matches(hasDescendant(withText("name1"))));
+        onView(isRoot()).perform(HelpersViewMatcher.waitView(withText("Cool Guy Mike"), 100000));
+
+        onView(withRecyclerView(R.id.recycler_view).atPosition(0)).check(matches(hasDescendant(withText("Cool Guy Mike"))));
     }
 
     @Test
@@ -289,7 +291,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
 
-        onView(withText("You liked name1")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        onView(withText("You liked Cool Guy Mike")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
     }
 
 
