@@ -10,4 +10,5 @@
     <string name="profile_tab_name">profile</string>
     <string name="matches_tab_name">matches</string>
     <string name="settings_tab_name">settings</string>
+    <string name="liked_message">You liked</string>
 </resources>

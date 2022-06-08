@@ -2,40 +2,49 @@ package com.example.datingapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.appcompat.widget.Toolbar;
+
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class SecondActivity extends AppCompatActivity {
     static ProfileFragment profileFragment;
+    static MatchesGridFragment matchesGridFragment;
 private TabLayout tabLayout;
 private ViewPager2 viewPager2;
 private Toolbar toolbar;
+private DrawerLayout drawer;
+private NavigationView navDrawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
         //toolbar
-        toolbar = findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
+       toolbar = findViewById(R.id.app_bar);
+       setSupportActionBar(toolbar);
+
+        //drawer
+        drawer = findViewById(R.id.drawer_layout);
+        //drawertoggle here
+        navDrawer = findViewById(R.id.navDrawer);
 
         //tablayout
         tabLayout = findViewById(R.id.tablayout);
-
         //viewpager
         viewPager2 = findViewById(R.id.viewpager2);
         viewPager2.setAdapter(createAdapter());
@@ -55,6 +64,9 @@ private Toolbar toolbar;
 
         //create profilefragment
         profileFragment = new ProfileFragment();
+
+        //create matchesfragment
+        matchesGridFragment = new MatchesGridFragment();
 
         //get bundle from MainActivity
             Bundle bundle = getIntent().getExtras();
@@ -79,13 +91,9 @@ private Toolbar toolbar;
 
                 //set arguments
             profileFragment.setArguments(arguments);
-            }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return true;
+
+        }
     }
 
     @Override
@@ -108,6 +116,27 @@ private Toolbar toolbar;
         }
     }
 
+    public void selectMenuItem(MenuItem menuItem){
+        switch(menuItem.getItemId()){
+            case R.id.profile_item:
+                viewPager2.setCurrentItem(0);
+                break;
+            case R.id.matches_item:
+                viewPager2.setCurrentItem(1);
+                break;
+            case R.id.settings_item:
+                viewPager2.setCurrentItem(2);
+                break;
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
     private VpAdapter createAdapter(){
         VpAdapter adapter = new VpAdapter(this);
         return adapter;
@@ -128,7 +157,7 @@ class VpAdapter extends FragmentStateAdapter {
                 fragment = SecondActivity.profileFragment;
                 break;
             case 1:
-                fragment = new MatchesFragment();
+                fragment = SecondActivity.matchesGridFragment;
                 break;
             case 2:
                 fragment = new SettingsFragment();
