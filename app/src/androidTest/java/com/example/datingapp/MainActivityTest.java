@@ -221,7 +221,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.submitButton)).perform(click());
 
-        onView(withId(R.id.age)).check(matches(withText("age: 22")));
+        onView(withId(R.id.age)).check(matches(withText("Age: 22")));
     }
 
     @Test
@@ -270,7 +270,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void LikeButtonWorks(){
+    public void LikeButtonWorks() throws InterruptedException {
         onView(withId(R.id.name)).perform(replaceText("Alas Ali"));
         onView(withId(R.id.email)).perform(replaceText("test@gmail.com"));
         onView(withId(R.id.user_name)).perform(replaceText("alasali"));
@@ -288,7 +288,7 @@ public class MainActivityTest {
 
         openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
         onView(withText("Matches")).perform(click());
-
+        Thread.sleep(1000);
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
 
         onView(withText("You liked Cool Guy Mike")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
