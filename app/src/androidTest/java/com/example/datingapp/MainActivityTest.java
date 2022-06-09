@@ -288,7 +288,7 @@ public class MainActivityTest {
 
         openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
         onView(withText("Matches")).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(100000);
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
 
         onView(withText("You liked Cool Guy Mike")).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
