@@ -16,6 +16,7 @@
             android:id="@+id/match_profile_pic"
             android:layout_width="match_parent"
             android:layout_height="108dp"
+            android:layout_marginTop="50dp"
             android:background="?attr/colorPrimaryDark"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_pic"/>
@@ -47,7 +48,7 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/heart_icon"
             android:scaleType="fitCenter"
-            android:layout_gravity="end"
-            ></ImageButton>
+            android:layout_gravity="end"/>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -11,6 +11,9 @@ import org.hamcrest.TypeSafeMatcher;
 
 import java.util.Objects;
 
+/**
+ * Created by dannyroa on 5/10/15.
+ */
 public class RecyclerViewMatcher {
     private final int recyclerViewId;
 
@@ -18,7 +21,7 @@ public class RecyclerViewMatcher {
         return new RecyclerViewMatcher(recyclerViewId);
     }
 
-    public RecyclerViewMatcher(int recyclerViewId){
+    public RecyclerViewMatcher(int recyclerViewId) {
         this.recyclerViewId = recyclerViewId;
     }
 
@@ -26,7 +29,8 @@ public class RecyclerViewMatcher {
         return atPositionOnView(position, -1);
     }
 
-    public Matcher<View> atPositionOnView(final int position, final int targetViewId){
+    public Matcher<View> atPositionOnView(final int position, final int targetViewId) {
+
         return new TypeSafeMatcher<View>() {
             Resources resources = null;
             View childView;

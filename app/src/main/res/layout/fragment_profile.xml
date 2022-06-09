@@ -7,62 +7,68 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
+
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="welcome"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:layout_marginTop="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/thirtysp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Welcome " >
     </TextView>
 
     <ImageView
         android:id="@+id/profile_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="70dp"
-        android:layout_gravity="center"
-        android:src="@drawable/profile_pic"
-        >
-    </ImageView>
+        android:src="@drawable/profile_pic"/>
 
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_picture"
+        android:layout_below="@+id/welcome"
+        android:layout_marginTop="70dp"
         android:layout_marginStart="@dimen/twenty"
-        android:layout_marginTop="@dimen/twenty"
-        android:textSize="@dimen/thirtysp"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/twentyfivesp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="name: ">
+        android:text="Name: ">
     </TextView>
 
     <TextView
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_picture"
-        android:layout_toEndOf="@+id/user_name"
-        android:layout_alignBottom="@+id/user_name"
-        android:gravity="bottom"
+        android:layout_below="@+id/user_name"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="@dimen/twenty"
-        android:layout_marginTop="@dimen/twenty"
+        android:textStyle="bold"
         android:textSize="@dimen/twentyfivesp"
-        android:text="age: ">
+        android:text="Age: ">
     </TextView>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_name"
+        android:layout_below="@+id/age"
         android:layout_marginStart="@dimen/twenty"
-        android:layout_marginTop="@dimen/five"
-        android:text="description: ">
+        android:layout_marginTop="30dp"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="@dimen/twentyfivesp"
+        android:text="Description: ">
     </TextView>
 
     <TextView
@@ -71,7 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/description"
         android:layout_marginStart="@dimen/twenty"
-        android:layout_marginTop="@dimen/twenty"
-        android:text="occupation: ">
+        android:layout_marginTop="30dp"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="@dimen/twentyfivesp"
+        android:text="Occupation: ">
     </TextView>
 </RelativeLayout>

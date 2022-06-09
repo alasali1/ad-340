@@ -264,7 +264,7 @@ public class MainActivityTest {
         openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext());
         onView(withText("Matches")).perform(click());
 
-        onView(isRoot()).perform(HelpersViewMatcher.waitView(withText("Cool Guy Mike"), 100000));
+        onView(isRoot()).perform(HelpersViewMatcher.waitView(withText("Cool Guy Mike"), 100000000));
 
         onView(withRecyclerView(R.id.recycler_view).atPosition(0)).check(matches(hasDescendant(withText("Cool Guy Mike"))));
     }
