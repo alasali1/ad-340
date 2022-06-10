@@ -23,6 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class SecondActivity extends AppCompatActivity {
     static ProfileFragment profileFragment;
     static MatchesGridFragment matchesGridFragment;
+    static SettingsFragment settingsFragment;
 private TabLayout tabLayout;
 private ViewPager2 viewPager2;
 private Toolbar toolbar;
@@ -67,6 +68,9 @@ private NavigationView navDrawer;
 
         //create matchesfragment
         matchesGridFragment = new MatchesGridFragment();
+
+        //create settingsfragment
+        settingsFragment = new SettingsFragment();
 
         //get bundle from MainActivity
             Bundle bundle = getIntent().getExtras();
@@ -160,7 +164,7 @@ class VpAdapter extends FragmentStateAdapter {
                 fragment = SecondActivity.matchesGridFragment;
                 break;
             case 2:
-                fragment = new SettingsFragment();
+                fragment = SecondActivity.settingsFragment;
                 break;
         }
         return fragment;

@@ -10,47 +10,45 @@
         tools:ignore="MissingConstraints"
         xmlns:tools="http://schemas.android.com/tools">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/menu"
-            app:title="DatingApp" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/menu"
+        app:title="DatingApp" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/profile_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_tab_name" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/profile_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_tab_name" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/matches_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/matches_tab_name" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/matches_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/matches_tab_name" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/settings_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_tab_name" />
-        </com.google.android.material.tabs.TabLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/settings_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_tab_name" />
+    </com.google.android.material.tabs.TabLayout>
+</com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
+<androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
 
 
 
